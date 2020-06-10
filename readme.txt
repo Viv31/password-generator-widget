@@ -1,7 +1,7 @@
-== Strong Password Maker  ==
+== Strong Password generator widget  ==
 Contributors: vaibhav31gangrade
 Donate link: 
-Tags: Password Generator,Strong  Password Generator
+Tags: Password Generator,Strong  Password Generator widget
 Requires at least: 4.6
 Tested up to: 5.2
 Stable tag: 5.2
