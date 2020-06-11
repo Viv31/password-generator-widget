@@ -1,4 +1,7 @@
 <?php 
+if(!defined('ABSPATH')){
+	 exit;
+}
 /**
  * Adds Password Generator  widget.
  */
@@ -73,7 +76,7 @@ class Password_generator_Widget extends WP_Widget {
 		<h4 style="color:#fff;"> Password Generator Widget</h4>
 		<img src="<?php echo plugins_url('',__FILE__).'/pg.png'?>" height="100" width="auto">
 		<div id="generated_password"></div>
-		  <form  method="POST" action="" > 
+		  <form  method="POST"> 
 				<div class="form-group">
 					<input type="checkbox" name="all" value="all" onchange = "return generate_pw();"> All
 				</div>
@@ -125,7 +128,7 @@ class Password_generator_Widget extends WP_Widget {
 			
 		$.ajax({
 				type:'POST',
-				url:plugin_path,
+				url:plugin_path,//page of form submission
 				data:data,
 				success:function(res){
 					//alert(res);
