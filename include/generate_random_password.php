@@ -1,20 +1,21 @@
 <?php
 //if(!defined('ABSPATH')) exit; // Exit if accessed directly
-error_reporting(0);
+
 require_once(explode("wp-content",__FILE__)[0]."wp-load.php");
 if(!defined('ABSPATH')) exit; // Exit if accessed directly
 
-
+//error_reporting(0);
 //include_once( ABSPATH . 'wp-load.php');
 
+//here @ is used for resolving undefined index error
 
 
-	$all = $_POST['all'];
+	$all                    =  			@$_POST['all'];
 	//echo $all;die;
-	$only_alphabet 			= 			$_POST['only_alphabet'];
-	$only_numbers			= 			$_POST['only_numbers'];
-	$only_specialcharacters = 			$_POST['only_specialcharacters'];
-	$length                 = 			$_POST['length'];
+	$only_alphabet 			= 			@$_POST['only_alphabet'];
+	$only_numbers			= 			@$_POST['only_numbers'];
+	$only_specialcharacters = 			@$_POST['only_specialcharacters'];
+	$length                 = 			intval(@$_POST['length']);
 
 	/*  IF Length is not defined by user so it will be 30 */
 
@@ -37,7 +38,7 @@ if(isset($all)){
        $random_password .= $characters[mt_rand(0, $max)];
 		 }
 
-		 echo $random_password; 
+		 echo esc_attr($random_password); 
 
 
 }
@@ -54,7 +55,7 @@ else if(isset($only_alphabet) && isset($only_specialcharacters) && isset($only_n
        $random_password .= $characters[mt_rand(0, $max)];
 		 }
 
-		 echo $random_password;
+		 echo esc_attr($random_password); 
 }
 
 /* GENERATE PASSWORD WITH ALPHABET AND NUMBERS  */
@@ -68,7 +69,7 @@ else if(isset($only_alphabet) && isset($only_numbers)){
        $random_password .= $characters[mt_rand(0, $max)];
 		 }
 
-		 echo $random_password;
+		 echo esc_attr($random_password); 
 
 }
 
@@ -84,7 +85,7 @@ else if(isset($only_alphabet) && isset($only_specialcharacters)){
        $random_password .= $characters[mt_rand(0, $max)];
 		 }
 
-		 echo $random_password;
+		 echo esc_attr($random_password); 
 }
 
 /* GENRATE PASSWORD WITH NUMBERS AND SPECIAL CHARACTERS */
@@ -100,7 +101,7 @@ else if(isset($only_numbers) && isset($only_specialcharacters)){
        $random_password .= $characters[mt_rand(0, $max)];
 		 }
 
-		echo $random_password;
+		 echo esc_attr($random_password); 
 }
 
 /*  GENERATE PASSWORD WITH ALPHABET   */
@@ -115,7 +116,7 @@ else if(isset($only_alphabet)){
        $random_password .= $characters[mt_rand(0, $max)];
 		 }
 
-		echo $random_password;
+		 echo esc_attr($random_password); 
 
 
 
@@ -134,7 +135,7 @@ else if(isset($only_numbers)){
        $random_password .= $characters[mt_rand(0, $max)];
 		 }
 
-		 echo $random_password;
+		  echo esc_attr($random_password); 
 }
 
 /*  GENERATE PASSWORD WITH SPECIAL CHARACTERS   */
@@ -152,7 +153,7 @@ else if(isset($only_specialcharacters)){
        $random_password .= $characters[mt_rand(0, $max)];
 		 }
 
-		echo $random_password;
+		 echo esc_attr($random_password); 
 
 }
 
