@@ -10,11 +10,11 @@ if(!defined('ABSPATH')) exit; // Exit if accessed directly
 //here @ is used for resolving undefined index error
 
 
-	$all                    =  			@$_POST['all'];
+	$all                    =  			@sanitize_text_field($_POST['all']);
 	//echo $all;die;
-	$only_alphabet 			= 			@$_POST['only_alphabet'];
-	$only_numbers			= 			@$_POST['only_numbers'];
-	$only_specialcharacters = 			@$_POST['only_specialcharacters'];
+	$only_alphabet 			= 			@sanitize_text_field($_POST['only_alphabet']);
+	$only_numbers			= 			@sanitize_text_field($_POST['only_numbers']);
+	$only_specialcharacters = 			@sanitize_text_field($_POST['only_specialcharacters']);
 	$length                 = 			intval(@$_POST['length']);
 
 	/*  IF Length is not defined by user so it will be 30 */
