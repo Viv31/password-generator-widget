@@ -22,4 +22,14 @@ function register_password_generator(){
 
 add_action('widgets_init','register_password_generator');
 
+
+//Adding Jquery in our plugin
+
+function load_admin_js(){
+        wp_deregister_script('jquery');
+		wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(),'3.1.1', true);
+
+}
+    add_action('init', 'load_admin_js');
+
 ?>
