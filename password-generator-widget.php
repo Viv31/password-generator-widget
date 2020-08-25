@@ -26,10 +26,10 @@ add_action('widgets_init','register_password_generator');
 //Adding Jquery in our plugin
 
 function load_admin_js(){
-        wp_deregister_script('jquery');
-		wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(),'3.1.1', true);
+       //including inbuilt jquery from wordpress core folder
+		wp_enqueue_script( 'custom-Jquery', site_url( 'wp-includes/js/jquery/jquery.js' , __FILE__ ) ); 
+ }
+    add_action('widgets_init', 'load_admin_js');
 
-}
-    add_action('init', 'load_admin_js');
 
 ?>

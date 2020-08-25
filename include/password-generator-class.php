@@ -126,7 +126,7 @@ class Password_generator_Widget extends WP_Widget {
 			}
 
 			
-		$.ajax({
+		jQuery.ajax({
 				type:'POST',
 				url:plugin_path,//page of form submission
 				data:data,
@@ -189,6 +189,6 @@ class Password_generator_Widget extends WP_Widget {
 		return $instance;
 	}
 
-} // class Foo_Widget
+} // class for widget
 
 ?>
