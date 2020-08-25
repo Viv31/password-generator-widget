@@ -34,7 +34,6 @@ class Password_generator_Widget extends WP_Widget {
 		}
 		?>
 
-<script type="text/javascript" src="<?php echo plugins_url('',__FILE__).'/PGW_Script.js';?>"></script>
 		
 		<style type="text/css">
 		#generated_password{
