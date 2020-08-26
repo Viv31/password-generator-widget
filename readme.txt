@@ -18,7 +18,7 @@ A Plugin for generating random pasword with numbers only ,characters only ,speci
 After Installing visit widget section password generator widget will be visibled there just drag and drop and you are ready to use. .
 
 == Requirements ==
-it can run on any wordpress version it reqiores only html and css and some basic javascript.
+it can run on any wordpress version.
 
 == Frequently Asked Questions ==
 
