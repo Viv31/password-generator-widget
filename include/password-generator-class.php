@@ -5,6 +5,8 @@ if(!defined('ABSPATH')){
 /**
  * Adds Password Generator  widget.
  */
+
+
 class Password_generator_Widget extends WP_Widget {
 
 	/**
@@ -17,6 +19,8 @@ class Password_generator_Widget extends WP_Widget {
 			array( 'description' => esc_html__( 'Widget for generating random password', 'PGW_domain' ), ) // Args
 		);
 	}
+
+	
 
 	/**
 	 * Front-end display of widget.
@@ -32,6 +36,8 @@ class Password_generator_Widget extends WP_Widget {
 		if ( ! empty( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
+
+
 		?>
 
 		
@@ -69,13 +75,15 @@ class Password_generator_Widget extends WP_Widget {
   	}
 
 </style>
+<script src="<?php //echo site_url( 'wp-includes/js/jquery/jquery.js' , __FILE__ ); ?>"></script>
 <!--form for password generator-->
 <div id="password_gen_div">
 
 		<h4 style="color:#fff;"> Password Generator Widget</h4>
 		<img src="<?php echo plugins_url('',__FILE__).'/pg.png'?>" height="100" width="auto">
 		<div id="generated_password"></div>
-		  <form  method="POST"> 
+		<form>
+		 <!--  <form  method="POST"> 
 				<div class="form-group">
 					<input type="checkbox" name="all" value="all" onchange = "return generate_pw();"> All
 				</div>
@@ -93,52 +101,135 @@ class Password_generator_Widget extends WP_Widget {
 					<input type="text" name="length" id="length" class="form-control" onkeyup="return generate_pw(this.value);" placeholder="Default value is 30">
 				</div>
 				
-				  </form> 
+				  </form>  --><br>
+				  <div class="form-group">
+					<input type="number" name="length" id="length" class="form-control" onchange=" return generate_pw(length);" placeholder="Default value is 30">
+				</div>
+				<br>
+				<div class="form-group">
+
+
+					<select class="form-control" name="select_para"  id="select_para" onchange = "return generate_pw(this.value,length);">
+						<option value="" id="" >----SELECT PARAMETER---</option>
+						<option value="all" id="all" >All</option>
+						<option value="only_alphabet" id="only_alphabet">Only Alphabet</option>
+						<option value="only_numbers" id="only_numbers">Only Numbers</option>
+						<option value="only_specialcharacters" id="only_specialcharacters">only Special charaters</option>
+						<option value="alphabet_and_specialcharacters" id="alphabet_and_specialcharacters">Alphabet & Special charaters</option>
+						<option value="alphabet_and_numbers" id="alphabet_and_numbers">Alphabet & Numbers</option>
+						<option value="specialchar_and_numbers" id="specialchar_and_numbers">Specialchar & Numbers</option>
+
+
+					</select>
+				</div>
+			</form>
 			
 	</div>
 
+
 	<script type="text/javascript">
 		
-		function generate_pw($len){
-
-		//alert($len);
-
-			var all = jQuery('input[name="all"]:checked').val();
-			var only_alphabet = jQuery('input[name="only_alphabet"]:checked').val();
-			var only_numbers = jQuery('input[name="only_numbers"]:checked').val();
-			var only_specialcharacters = jQuery('input[name="only_specialcharacters"]:checked').val();
+		function generate_pw($valueByUser){
+		//alert($valueByUser);
+		var valueByUser = $valueByUser;
 			
-			var length = $len;
-			//alert(length);
-			var plugin_path = '<?php echo plugins_url('',__FILE__).'/generate_random_password.php'; ?>';
-			
-			//alert(plugin_path);
-			var data = {
+		
+			var length = jQuery("#length").val();
 
-				"all":all,
-				"only_alphabet":only_alphabet,
-				"only_numbers":only_numbers,
+			if(length == ""){
+			var	length = 30;
+
+			}
+			
+			if(valueByUser == "all" ){
 				
-				"only_specialcharacters":only_specialcharacters,
-				"length":length
+			
+			
+				
+				var chars ='0987654321ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%%^&*()';
+				var random_password ='';
+				for(var i = 1;i<=length;i++){
+
+					random_password += chars.charAt(Math.floor(Math.random()*chars.length)); 
+				} 
+				return jQuery("#generated_password").html(random_password);
+				
+				return true;
+					
+
+			}
+			
+			 if(valueByUser == "only_alphabet"){
+				var chars ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+				var random_password ='';
+				for(var i = 1;i<=length;i++){
+
+					random_password += chars.charAt(Math.floor(Math.random()*chars.length)); 
+				} 
+				return jQuery("#generated_password").html(random_password);
+
+
+
+
+			}
+			 if(valueByUser =="only_numbers"){
+				var chars ='1234567890';
+				var random_password ='';
+				for(var i = 1;i<=length;i++){
+
+					random_password += chars.charAt(Math.floor(Math.random()*chars.length)); 
+				} 
+
+				return jQuery("#generated_password").html(random_password);
+
+
+
+			} 
+			 if(valueByUser=="only_specialcharacters"){
+				var chars ='~`!@#$%^&*()_+=-';
+				var random_password ='';
+				for(var i = 1;i<=length;i++){
+
+					random_password += chars.charAt(Math.floor(Math.random()*chars.length)); 
+				} 
+				return jQuery("#generated_password").html(random_password);
+
+			}
+			 if( valueByUser == "specialchar_and_numbers"){
+				var chars ='1234567890~`!@#$%^&*()_+=-';
+				var random_password ='';
+				for(var i = 1;i<=length;i++){
+
+					random_password += chars.charAt(Math.floor(Math.random()*chars.length)); 
+				} 
+				return jQuery("#generated_password").html(random_password);
+
+			}
+			 if(valueByUser =="alphabet_and_numbers"){
+				var chars ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+				var random_password ='';
+				for(var i = 1;i<=length;i++){
+
+					random_password += chars.charAt(Math.floor(Math.random()*chars.length)); 
+				} 
+				return jQuery("#generated_password").html(random_password);
 
 			}
 
+			if(valueByUser =="alphabet_and_specialcharacters"){
+				var chars ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!@#$%^&*()_+=-';
+				var random_password ='';
+				for(var i = 1;i<=length;i++){
+
+					random_password += chars.charAt(Math.floor(Math.random()*chars.length)); 
+				} 
+				return jQuery("#generated_password").html(random_password);
+
+			}
+
+			 
 			
-		jQuery.ajax({
-				type:'POST',
-				url:plugin_path,//page of form submission
-				data:data,
-				success:function(res){
-					//alert(res);
-					jQuery("#generated_password").html(res);
-
-				}
-			});
-
-
 	}
-
 	</script>
 
 		
@@ -187,6 +278,8 @@ class Password_generator_Widget extends WP_Widget {
 
 		return $instance;
 	}
+
+
 
 } // class for widget
 
