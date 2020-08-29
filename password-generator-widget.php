@@ -12,6 +12,13 @@
 if(!defined('ABSPATH')){
 	 exit;
 }
+//Adding Jquery in our plugin from wp-includes folder
+
+function pgw_load_admin_js(){
+        wp_enqueue_script( 'custom-Jquery', site_url( 'wp-includes/js/jquery/jquery.js' , __FILE__ ) ); 
+ }
+    add_action('widgets_init', 'pgw_load_admin_js');
+
 require_once(plugin_dir_path(__FILE__).'/include/password-generator-class.php');
 
 
@@ -21,14 +28,5 @@ function pgw_register_password_generator(){
 }
 
 add_action('widgets_init','pgw_register_password_generator');
-
-
-//Adding Jquery in our plugin from wp-includes folder
-
-function pgw_load_admin_js(){
-        wp_enqueue_script( 'custom-Jquery', site_url( 'wp-includes/js/jquery/jquery.js' , __FILE__ ) ); 
- }
-    add_action('widgets_init', 'pgw_load_admin_js');
-
 
 ?>
