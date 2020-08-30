@@ -3,7 +3,7 @@ Contributors: vaibhav31gangrade
 Donate link: 
 Tags: Password Generator,Strong  Password Generator widget
 Requires at least: 4.6
-Tested up to: 5.2
+Tested up to: 5.5
 Stable tag: 5.2
 Requires PHP: 5.2.4
 License: GPLv2 or later
