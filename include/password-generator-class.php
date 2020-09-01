@@ -103,7 +103,7 @@ class Password_generator_Widget extends WP_Widget {
 				
 				  </form>  --><br>
 				  <div class="form-group">
-					<input type="number" name="length" id="length" class="form-control" onchange=" return generate_pw(length);" placeholder="Default value is 30">
+					<input type="number" name="length" id="length" class="form-control" onchange=" return generate_pw(length);" placeholder="Default value is 30" minlength="1">
 				</div>
 				<br>
 				<div class="form-group">
